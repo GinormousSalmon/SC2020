@@ -122,6 +122,7 @@ my_thread = threading.Thread(target=test_client)
 
 load_list_clients()
 
+print("start")
 while 1:
 
     message = socket2.recv_string()
