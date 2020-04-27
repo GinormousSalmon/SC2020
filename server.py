@@ -52,7 +52,7 @@ def save_list_clients():
 
 
 def take_message(id, type):
-    # находим сообщение для клиента  id_from, text, id_to
+    # find message for client  id_from, text, id_to
     # print("take_message", id)
     # print(message_list)
     for i in range(len(message_list)):
@@ -128,9 +128,9 @@ while 1:
     message = message.split("~")
     # print(message)
 
-    # пересылка инфы
+    # sending info
     if message[0] == "s":
-        # чистим все запросы до этого
+        # deleting requests
         # while 1:
         #     mes = take_message(int(message[1]), "s")
         #     if len(mes) == 0:
@@ -145,9 +145,9 @@ while 1:
         socket2.send_string("1~")
         continue
 
-    # запрос на получение ответа
+    # request for answer
     if message[0] == "t":
-        # чистим все запросы до этого
+        # deleting requests
         # while 1:
         #     mes = take_message(int(message[1]), "t")
         #     if len(mes) == 0:
@@ -175,13 +175,13 @@ while 1:
         socket2.send_string(resp)
         continue
 
-    # пересыл байтовой информации
+    # sending bytes
     if message[0] == "b":
         # print(message)
         message_byte = socket2.recv(0)
         # print("take bytes", len(message_byte))
 
-        # чистим все месаги байтовые впереди
+        # deleting byte messages
         while 1:
             mes = take_message(int(message[1]), "b")
             if len(mes) == 0:
@@ -191,7 +191,7 @@ while 1:
         socket2.send_string("1~")
         continue
 
-    # запрос на получение ответа байтовой посылки
+    # request for byte answer
     if message[0] == "bt":
         # print(message)
         mes = take_message(int(message[1]), "b")
@@ -208,7 +208,6 @@ while 1:
                 frame_bytes = mes[4]
 
             # print(resp)
-        # пусто
         # socket2.send_string(frame_json, zmq.SNDMORE)
 
         socket2.send_json(frame_json, zmq.SNDMORE)
