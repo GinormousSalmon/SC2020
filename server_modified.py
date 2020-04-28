@@ -69,6 +69,7 @@ print("start")
 while 1:
     message = socket2.recv_string()
     message = message.split("~")
+    socket2.send_string("1")
     print(message)
     if message[0] == "nice cock":
         socket2.send_string("awesome balls")
