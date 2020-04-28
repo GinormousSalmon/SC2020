@@ -243,6 +243,7 @@ class InetConnect:
 
         self.wait_my_query()
         message_json = []
+        message = "error"
         try:
             self.socket.send_string("bt~" + self.id + "~")
             message_json = self.socket.recv_json()
