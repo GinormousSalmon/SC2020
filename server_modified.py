@@ -69,11 +69,11 @@ print("start")
 while 1:
     message = socket2.recv_string()
     message = message.split("~")
-    socket2.send_string("1")
     print(message)
-    print()
     if message[0] == "nice cock":
         socket2.send_string("awesome balls")
+    else:
+        socket2.send_string("got")
     continue
     # sending info
     if message[0] == "s":
