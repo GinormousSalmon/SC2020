@@ -19,36 +19,7 @@ def __del__():
 
 # atexit.register(cleanup)
 
-
-num_client = 0
-clients_list = []  # id, name, type, timeout
 message_list = []  # id_from, text, id_to, type, data
-
-
-def load_list_clients():
-    global num_client, clients_list
-    with open('clients.txt', 'r') as content_file:
-        clients = content_file.read()
-    clients = clients.split('\n')
-
-    for s in clients:
-        s = s.split(",")
-        if len(s) > 4:
-            clients_list.append([int(s[0]), s[1], s[2], float(s[3])])
-            num_client = int(s[0]) + 1
-    print(clients_list)
-
-
-def save_list_clients():
-    global clients_list
-    str_list = ""
-    for s in clients_list:
-        for i in s:
-            str_list += str(i) + ","
-        str_list += "\n"
-
-    with open("clients.txt", "w") as text_file:
-        text_file.write(str_list)
 
 
 def take_message(id, type):
@@ -62,7 +33,7 @@ def take_message(id, type):
     return []
 
 
-def clear_paket(id):
+def clear_packet(id):
     global message_list
     id = int(id)
     count = 0
@@ -78,7 +49,7 @@ def clear_paket(id):
     return count
 
 
-def find_duble(mes):
+def find_duplication(mes):
     for i in range(len(message_list)):
         # print( message_list[i], mes)
         if message_list[i][0] == int(mes[1]) and message_list[i][1] == int(mes[2]) and message_list[i][2] == mes[3]:
@@ -89,46 +60,19 @@ def find_duble(mes):
     pass
 
 
-def test_client():
-    t = time.time()
-    while 1:
-        if t + 5 < time.time():
-            print("----------------- message_list:" + str(len(message_list)))
-            for m in message_list:
-                print(m)
-            print("----------------- message_list:" + str(len(message_list)))
-            t = time.time()
-            # print("clients_list ", len(clients_list), "message_list", len(message_list))
-            for c in clients_list:
-                #                    if c[3]<time.time()+10:
-                if time.time() - c[3] < 5:
-                    count_in = 0
-                    count_out = 0
-                    for p in message_list:
-                        if p[1] == c[2]:
-                            count_in += 1
-                        if p[2] == c[0]:
-                            count_out += 1
-
-                    print("pause client ", c, round(time.time() - c[3], 2), "messages_in", count_in, "message_out",
-                          count_out)
-        # print(message_list)
-        time.sleep(1)
-
-
-my_thread = threading.Thread(target=test_client)
+# my_thread = threading.Thread(target=test_client)
 # my_thread.daemon = True
 # my_thread.start()
 
-load_list_clients()
 
 print("start")
 while 1:
-
     message = socket2.recv_string()
     message = message.split("~")
-    # print(message)
-
+    print(message)
+    if message[0] == "nice cock":
+        socket2.send_string("awesome balls")
+    continue
     # sending info
     if message[0] == "s":
         # deleting requests
@@ -137,7 +81,7 @@ while 1:
         #     if len(mes) == 0:
         #         break
         # print(message)
-        if find_duble(message) == False:
+        if not find_duplication(message):
             try:
                 message_list.append([int(message[1]), int(message[2]), message[3], "s"])
             except:
@@ -157,14 +101,10 @@ while 1:
 
         flag_reg = False
         # print(clients_list, message)
-        for c in clients_list:
-            if c[0] == int(message[1]):
-                flag_reg = True
-                c[3] = time.time()
 
         # print(message)
         resp = "0~"
-        if flag_reg == False:
+        if not flag_reg:
             print("nedd reg", message)
             resp = "-1~"
 
@@ -213,46 +153,13 @@ while 1:
 
         socket2.send_json(frame_json, zmq.SNDMORE)
         socket2.send(frame_bytes)
-
         continue
 
     if message[0] == "clear":
         # print("take num ", num_client)
         # print("clear", message)
-        count = clear_paket(message[1])
+        count = clear_packet(message[1])
         socket2.send_string(str(count))
-        continue
-
-    if message[0] == "i":
-        # print("take num ", num_client)
-        num = num_client
-        f = 1
-        for l in clients_list:
-            if l[1] == message[1]:
-                # print("old client")
-                f = 0
-                num = l[0]
-                print("login ", datetime.datetime.today(), message[1], message[2])
-                continue
-        if f == 1:
-            print("login NEW", datetime.datetime.today(), message[1], message[2])
-            clients_list.append([int(num_client), message[1], message[2], time.time()])
-            save_list_clients()
-            num_client += 1
-        socket2.send_string(str(num))
-        # clear_paket(num_client)
-        continue
-
-    if message[0] == "l":
-        list_str = ""
-        for i in clients_list:
-            if i[2] == "robot" and time.time() - i[3] < 50:
-                for j in i:
-                    list_str += str(j) + ","
-                list_str += "~"
-        print(list_str)
-        socket2.send_string(list_str)
-
         continue
 
     # print(message)

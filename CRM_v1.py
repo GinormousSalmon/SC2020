@@ -2,9 +2,10 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import *
 import sys
 
+# loading ui's
 form_main, base_main = uic.loadUiType('mainForm.ui')
 form_chat, base_chat = uic.loadUiType('chat.ui')
-messages = ""
+messages = ""  # local chat history store
 
 
 class MainUI(base_main, form_main):
@@ -13,6 +14,7 @@ class MainUI(base_main, form_main):
         self.setupUi(self)
         self.main = None
 
+        # buttons binding
         self.crm_button = self.findChild(QPushButton, 'crmButton')
         self.crm_button.clicked.connect(self.crm_button_click)
 
@@ -52,6 +54,7 @@ class MainUI(base_main, form_main):
         print('store_button_click')
 
     def chat_button_click(self):
+        # close current window and open chat window
         self.main = ChatUI()
         self.main.show()
         self.close()
@@ -63,6 +66,7 @@ class ChatUI(base_chat, form_chat):
         self.setupUi(self)
         self.main = None
 
+        # widgets binding
         self.back_button = self.findChild(QPushButton, 'backFromChatButton')
         self.back_button.clicked.connect(self.back_from_chat_click)
 
@@ -75,17 +79,19 @@ class ChatUI(base_chat, form_chat):
         self.chat_field = self.findChild(QTextEdit, 'chatField')
 
     def back_from_chat_click(self):
+        # go back to main window
         self.main = MainUI()
         self.main.show()
         self.close()
 
     def send_button_click(self):
+        # send message button clicked
         global messages
         text = self.message_field.text().strip(" ")
-        if len(text) > 0:
-            messages += text + '<br/>'
-            self.chat_field.setHtml(messages)
-            self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())
+        if len(text) > 0:  # if message is not empty
+            messages += text + '<br/>'  # appending message to local history
+            self.chat_field.setHtml(messages)  # updating chat field
+            self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
         self.message_field.clear()
 
 
