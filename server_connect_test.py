@@ -1,14 +1,17 @@
 import InetConnection
 import socket
 import zmq
+import time
 
 context = zmq.Context()
 socket = context.socket(zmq.REQ)
 result = socket.connect("tcp://45.143.136.117:9000")
 print(result)
-socket.send_string("nice cock")
-message = str(socket.recv_string())
-print(message)
+while True:
+    socket.send_string("nice cock")
+    message = str(socket.recv_string())
+    print(message)
+    time.sleep(1)
 # print("connect OK!")
 
 

@@ -71,7 +71,6 @@ while 1:
     message = message.split("~")
     print(message)
     if message[0] == "nice cock":
-        socket2.send_string("ur gay")
         socket2.send_string("awesome balls")
     else:
         socket2.send_string("got")
