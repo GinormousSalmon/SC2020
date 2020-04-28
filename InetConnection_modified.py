@@ -54,7 +54,7 @@ class InetConnect:
         return m
 
     def try_connect(self):
-        # print("connect try..", self.name, self.type)
+        print("connect try..", self.name, self.type)
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.REQ)
         # self.socket.connect("tcp://95.154.96.240:7777")
@@ -62,15 +62,16 @@ class InetConnect:
         # self.socket.connect("tcp://85.95.150.144:7777")
         self.socket.connect("tcp://45.143.136.117:9000")
         self.connected = True
-        # print("connect OK!")
+        print("connect OK!")
         self.clear()
         self.registration()
 
     def connect(self):
-        if not self.connected:
-            self.my_thread = threading.Thread(target=self.try_connect)
-            self.my_thread.daemon = True
-            self.my_thread.start()
+        self.try_connect()
+        # if not self.connected:
+        #     self.my_thread = threading.Thread(target=self.try_connect)
+        #     self.my_thread.daemon = True
+        #     self.my_thread.start()
 
     def disconnect(self):
         # if self.connected == True:
