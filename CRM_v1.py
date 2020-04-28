@@ -103,6 +103,7 @@ class ChatUI(base_chat, form_chat):
 
 
 socket.send_string("history")
+print("waiting answer from server")
 messages = str(socket.recv_string())  # download chat history
 
 app = QApplication(sys.argv)

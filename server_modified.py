@@ -48,5 +48,5 @@ while True:
     elif data[0] == "history":
         history = ""
         for mes in Message.select():
-            history += mes.tex
+            history += mes.text
         socket.send_string(history)
