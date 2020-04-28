@@ -7,7 +7,7 @@ import datetime
 context2 = zmq.Context(1)
 socket2 = context2.socket(zmq.REP)
 
-socket2.bind("tcp://*:7777")
+socket2.bind("tcp://*:9000")
 
 
 def __del__():

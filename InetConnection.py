@@ -60,7 +60,7 @@ class InetConnect:
         # self.socket.connect("tcp://95.154.96.240:7777")
         # self.socket.connect("tcp://85.95.150.144:7777")
         # self.socket.connect("tcp://85.95.150.144:7777")
-        self.socket.connect("tcp://45.143.136.117:7777")
+        self.socket.connect("tcp://45.143.136.117:9000")
         self.connected = True
         # print("connect OK!")
         self.clear()
