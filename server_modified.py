@@ -68,9 +68,10 @@ def find_duplication(mes):
 print("start")
 while 1:
     message = socket2.recv_string()
-    print(message)
     message = message.split("~")
     socket2.send_string("1")
+    print(message)
+    print()
     if message[0] == "nice cock":
         socket2.send_string("awesome balls")
     continue
