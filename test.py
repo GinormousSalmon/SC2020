@@ -1,11 +1,21 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import *
 import sys
+import os
 
-uifile_1 = 'mainForm.ui'
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
+uifile_1 = resource_path('mainForm.ui')
 form_1, base_1 = uic.loadUiType(uifile_1)
 
-uifile_2 = 'chat.ui'
+uifile_2 = resource_path('chat.ui')
 form_2, base_2 = uic.loadUiType(uifile_2)
 
 

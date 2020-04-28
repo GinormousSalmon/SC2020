@@ -2,6 +2,14 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import *
 import sys
 import zmq
+import os
+
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 
 # connecting to server
 context = zmq.Context()
@@ -9,8 +17,8 @@ socket = context.socket(zmq.REQ)
 result = socket.connect("tcp://45.143.136.117:9000")
 
 # loading ui's
-form_main, base_main = uic.loadUiType('mainForm.ui')
-form_chat, base_chat = uic.loadUiType('chat.ui')
+form_main, base_main = uic.loadUiType(resource_path('mainForm.ui'))
+form_chat, base_chat = uic.loadUiType(resource_path('chat.ui'))
 
 
 class MainUI(base_main, form_main):
