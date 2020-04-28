@@ -1,11 +1,16 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import *
 import sys
+import zmq
+
+# connecting to server
+context = zmq.Context()
+socket = context.socket(zmq.REQ)
+result = socket.connect("tcp://45.143.136.117:9000")
 
 # loading ui's
 form_main, base_main = uic.loadUiType('mainForm.ui')
 form_chat, base_chat = uic.loadUiType('chat.ui')
-messages = ""  # local chat history store
 
 
 class MainUI(base_main, form_main):
@@ -90,10 +95,15 @@ class ChatUI(base_chat, form_chat):
         text = self.message_field.text().strip(" ")
         if len(text) > 0:  # if message is not empty
             messages += text + '<br/>'  # appending message to local history
+            socket.send_string("in_mes|" + text)
+            print(str(socket.recv_string()))
             self.chat_field.setHtml(messages)  # updating chat field
             self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
         self.message_field.clear()
 
+
+socket.send_string("history")
+messages = str(socket.recv_string())  # download chat history
 
 app = QApplication(sys.argv)
 window = MainUI()

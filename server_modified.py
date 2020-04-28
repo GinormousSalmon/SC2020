@@ -44,6 +44,7 @@ while True:
     if data[0] == "in_mes":
         message = Message(username="anonymous", text=data[1])
         message.save()
+        socket.send_string("ok")
     elif data[0] == "history":
         history = ""
         for mes in Message.select():
