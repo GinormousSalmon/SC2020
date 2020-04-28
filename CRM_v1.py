@@ -83,6 +83,9 @@ class ChatUI(base_chat, form_chat):
 
         self.chat_field = self.findChild(QTextEdit, 'chatField')
 
+        self.chat_field.setHtml(messages)  # first updating chat field
+        self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
+
     def back_from_chat_click(self):
         # go back to main window
         self.main = MainUI()
