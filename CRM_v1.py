@@ -135,10 +135,7 @@ class ChatUI(base_chat, form_chat):
 
         update = True
 
-        # ----------------------------------------------------------------------------------------------------
-        # my_thread = threading.Thread(target=self.chat_updater)
-        # my_thread.daemon = True
-        # my_thread.start()
+        # starting new thread
         self.using_q_thread()
 
     def using_q_thread(self):
@@ -168,9 +165,7 @@ class ChatUI(base_chat, form_chat):
         # if not self.msg.isVisible():
         #     self.msg.show()
 
-    print("started")
-
-    # ----------------------------------------------------------------------------------------------------
+    print("thread started")
 
     def chat_updater(self):
         global messages, update
