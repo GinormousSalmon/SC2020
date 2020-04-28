@@ -72,6 +72,7 @@ while 1:
     print(message)
     if message[0] == "nice cock":
         socket2.send_string("awesome balls")
+        socket2.send_string("ur gay")
     else:
         socket2.send_string("got")
     continue
