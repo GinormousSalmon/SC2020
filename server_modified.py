@@ -43,7 +43,7 @@ while True:
     try:
         print(data)
     except UnicodeEncodeError:
-        print("error")
+        print("encode error")
     if data[0] == "in_mes":
         message = Message(username="anonymous", text=data[1])
         message.save()
