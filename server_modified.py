@@ -40,7 +40,10 @@ print("start")
 while True:
     data = socket.recv_string()
     data = data.split("|")
-    print(data)
+    try:
+        print(data)
+    except UnicodeEncodeError:
+        print("error")
     if data[0] == "in_mes":
         message = Message(username="anonymous", text=data[1])
         message.save()
