@@ -94,3 +94,4 @@ while True:
             send("error")
     except Exception as ex:
         print(ex)
+        time.sleep(0.3)
