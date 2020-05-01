@@ -77,7 +77,7 @@ while True:
             send(history)
             # result = send("usercheck|" + email + "|" + password)
         elif data[0] == "usercheck":
-            if len(User.select().where(User.email == data[1], User.password == int(data[2]))) > 0:
+            if len(User.select().where(User.email == data[1], User.password == data[2])) > 0:
                 user = User.get(User.email == data[1])
                 send("exist$#$" + user.name + "$#$" + str(user.position))
             else:

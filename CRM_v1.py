@@ -45,7 +45,7 @@ def send(message):
         print("waiting answer from server")
         for j in range(6):
             try:
-                answer = socket.recv_string(zmq.NOBLOCK).decode('utf-8')
+                answer = socket.recv_string(zmq.NOBLOCK, encoding='utf-8')
             except zmq.ZMQError:
                 pass
             else:
