@@ -41,7 +41,7 @@ def send(message):
     # thread.daemon = True
     # thread.start()
     for i in range(3):
-        socket.send_string(message.encode('utf-8'))
+        socket.send_string(message, encoding='utf-8')
         print("waiting answer from server")
         for j in range(6):
             try:

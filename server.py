@@ -46,8 +46,8 @@ def __del__():
 
 
 def send(mes):
-    print("sending" + mes)
-    socket.send_string(mes.encode('utf-8'))
+    print("sending " + mes)
+    socket.send_string(mes, encoding='utf-8')
 
 
 # my_thread = threading.Thread(target=test_client)
@@ -60,7 +60,7 @@ User.create_table()
 print("start")
 while True:
     try:
-        data = socket.recv_string().decode('utf-8')
+        data = socket.recv_string(encoding='utf-8')
         data = data.split("|")
         try:
             print(data)
