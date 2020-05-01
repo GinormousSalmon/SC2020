@@ -26,7 +26,7 @@ update = False
 
 # 1-сотрудник, 2-руководитель отдела, 3-руководитель подразделения, 4-руководитель предприятия
 current_user = "none", "none", 0  # email, ФИ, должность
-positions = "Сотрудник", "Руководитель отдела", "Руководитель подразделения", "Руководитель предприятия"
+positions = ["Сотрудник", "Руководитель отдела", "Руководитель подразделения", "Руководитель предприятия"]
 
 # loading ui's
 form_main, base_main = uic.loadUiType(resource_path('mainForm.ui'))
@@ -49,9 +49,11 @@ def send(message):
             except zmq.ZMQError:
                 pass
             else:
+                print("got answer")
                 return answer
             finally:
                 time.sleep(0.02)
+    print("no answer")
     return None
 
 
@@ -101,7 +103,7 @@ class LoginUI(base_login, form_login):
         self.email_input = self.findChild(QLineEdit, 'mail_login_input')
 
         self.password_input = self.findChild(QLineEdit, 'pw_login_input')
-        # self.password_input.setEchoMode(QLineEdit.Password)
+        self.password_input.setEchoMode(QLineEdit.Password)
 
         self.info_label = self.findChild(QLabel, 'info')
         pal = self.info_label.palette()
@@ -170,10 +172,10 @@ class RegUI(base_reg, form_reg):
         self.info_label.setPalette(pal)
 
     def signup_button_click(self):
-        global current_user
+        global current_user, positions
         name = self.name_input.text().strip(" ")
         email = self.email_input.text().strip(" ")
-        position = self.position_input.currentText().strip(" ")
+        position = positions.index(self.position_input.currentText()) + 1
         password = self.password_input.text().strip(" ")
 
         if len(name) == 0:
@@ -183,11 +185,12 @@ class RegUI(base_reg, form_reg):
         elif len(password) == 0:
             self.info_label.setText("password is empty")
         else:
-            result = send("reg|" + email + "|" + password + "|" + name + "|" + position)
+            result = send("reg|" + email + "|" + password + "|" + name + "|" + str(position))
             if result is None:
                 self.info_label.setText("connection error. try again")
             elif result == "reg_ok":
                 current_user = email, name, int(position)
+                print(current_user)
                 self.main = MainUI()
                 self.main.show()
                 self.close()
@@ -233,7 +236,7 @@ class MainUI(base_main, form_main):
         self.username.setText(current_user[1])
 
         self.user_position = self.findChild(QLabel, 'user_position_label')
-        self.user_position.setText(positions[current_user[2]])
+        self.user_position.setText(positions[current_user[2] - 1])
 
     def crm_button_click(self):
         # This is executed when the button is pressed

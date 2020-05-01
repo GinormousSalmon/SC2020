@@ -45,6 +45,11 @@ def __del__():
     socket.close()
 
 
+def send(mes):
+    print("sending" + mes)
+    socket.send_string(mes)
+
+
 # my_thread = threading.Thread(target=test_client)
 # my_thread.daemon = True
 # my_thread.start()
@@ -64,26 +69,28 @@ while True:
         if data[0] == "in_mes":
             message = Message(username=data[1], text=data[2])
             message.save()
-            socket.send_string("ok")
+            send("ok")
         elif data[0] == "history":
             history = ""
             for mes in Message.select():
                 history += mes.text + '<br/>'
-            socket.send_string(history)
+            send(history)
             # result = send("usercheck|" + email + "|" + password)
         elif data[0] == "usercheck":
             if len(User.select().where(User.email == data[1], User.password == data[2])) > 0:
                 user = User.get(User.email == data[1])
-                socket.send_string("exist$#$" + user.name + "$#$" + user.position)
+                send("exist$#$" + user.name + "$#$" + user.position)
             else:
-                socket.send_string("error")
+                send("error")
                 #            result = send("reg|" + email + "|" + password + "|" + name + "|" + position)
         elif data[0] == "reg":
             if len(User.select().where(User.email == data[1], User.password == data[2])) > 0:
-                socket.send_string("exist")
+                send("exist")
             else:
                 user = User(email=data[1], name=data[3], position=int(data[4]), password=data[2])
                 user.save()
-                socket.send_string("reg_ok")
-    except:
-        pass
+                send("reg_ok")
+        else:
+            send("error")
+    except Exception as ex:
+        print(ex)
