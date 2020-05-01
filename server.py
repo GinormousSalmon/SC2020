@@ -47,7 +47,7 @@ def __del__():
 
 def send(mes):
     print("sending " + mes)
-    socket.send_string(mes, encoding='utf-8')
+    socket.send_string(mes, encoding='utf-16')
 
 
 # my_thread = threading.Thread(target=test_client)
@@ -60,7 +60,7 @@ User.create_table()
 print("start")
 while True:
     try:
-        data = socket.recv_string(encoding='utf-8')
+        data = socket.recv_string(encoding='utf-16')
         data = data.split("|")
         try:
             print(data)
@@ -81,7 +81,7 @@ while True:
                 user = User.get(User.email == data[1])
                 send("exist$#$" + user.name + "$#$" + str(user.position))
             else:
-                send("error")
+                send("wrong user")
                 #            result = send("reg|" + email + "|" + password + "|" + name + "|" + position)
         elif data[0] == "reg":
             if len(User.select().where(User.email == data[1], User.password == data[2])) > 0:
