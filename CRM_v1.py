@@ -25,7 +25,8 @@ messages = ""  # local chat history
 update = False
 
 # 1-сотрудник, 2-руководитель отдела, 3-руководитель подразделения, 4-руководитель предприятия
-current_user = "none", 0  # ФИ, должность
+current_user = "none", "none", 0  # email, ФИ, должность
+positions = "Сотрудник", "Руководитель отдела", "Руководитель подразделения", "Руководитель предприятия"
 
 # loading ui's
 form_main, base_main = uic.loadUiType(resource_path('mainForm.ui'))
@@ -35,7 +36,23 @@ form_reg, base_reg = uic.loadUiType(resource_path('registration.ui'))
 
 
 def send(message):
-    return 1
+    global socket
+    # thread = threading.Thread(target=test_client)
+    # thread.daemon = True
+    # thread.start()
+    for i in range(3):
+        socket.send_string(message)
+        print("waiting answer from server")
+        for j in range(6):
+            try:
+                answer = socket.recv_string(zmq.NOBLOCK)
+            except zmq.ZMQError:
+                pass
+            else:
+                return answer
+            finally:
+                time.sleep(0.02)
+    return None
 
 
 def log_uncaught_exceptions(ex_cls, ex, tb):
@@ -60,10 +77,11 @@ class AThread(QThread):
     def run(self):
         global messages, update
         while update:
-            socket.send_string("history")
-            print("waiting answer from server", datetime.now())
-            messages = str(socket.recv_string())  # download chat history
-            print(messages)
+            # socket.send_string("history")
+            messages = send("history")
+            # print("waiting answer from server", datetime.now())
+            # messages = str(socket.recv_string())  # download chat history
+            # print(messages)
             self.threadSignalAThread.emit(messages)
             QThread.msleep(1000)
 
@@ -90,6 +108,7 @@ class LoginUI(base_login, form_login):
         self.info_label.setPalette(pal)
 
     def signin_button_click(self):
+        global current_user
         email = self.email_input.text().strip(" ")
         password = self.password_input.text().strip(" ")
         if len(email) == 0:
@@ -100,7 +119,13 @@ class LoginUI(base_login, form_login):
             result = send("usercheck|" + email + "|" + password)
             if result is None:
                 self.info_label.setText("connection error. try again")
-            elif result == "exist":
+                return 0
+            result = result.split("$#$")
+            print(result)
+            if result[0] == "exist":
+                name = result[1]
+                position = int(result[2])
+                current_user = email, name, position
                 self.main = MainUI()
                 self.main.show()
                 self.close()
@@ -143,6 +168,7 @@ class RegUI(base_reg, form_reg):
         self.info_label.setPalette(pal)
 
     def signup_button_click(self):
+        global current_user
         name = self.name_input.text().strip(" ")
         email = self.email_input.text().strip(" ")
         position = self.position_input.currentText().strip(" ")
@@ -159,6 +185,7 @@ class RegUI(base_reg, form_reg):
             if result is None:
                 self.info_label.setText("connection error. try again")
             elif result == "reg_ok":
+                current_user = email, name, int(position)
                 self.main = MainUI()
                 self.main.show()
                 self.close()
@@ -173,6 +200,7 @@ class RegUI(base_reg, form_reg):
 
 class MainUI(base_main, form_main):
     def __init__(self):
+        global current_user, positions
         super(base_main, self).__init__()
         self.setupUi(self)
         self.main = None
@@ -200,8 +228,10 @@ class MainUI(base_main, form_main):
         self.logout_button.clicked.connect(self.logout_button_click)
 
         self.username = self.findChild(QLabel, 'current_user_label')
+        self.username.setText(current_user[1])
 
         self.user_position = self.findChild(QLabel, 'user_position_label')
+        self.user_position.setText(positions[current_user[2]])
 
     def crm_button_click(self):
         # This is executed when the button is pressed
@@ -230,7 +260,9 @@ class MainUI(base_main, form_main):
         self.close()
 
     def logout_button_click(self):
-        pass
+        self.main = LoginUI()
+        self.main.show()
+        self.close()
 
 
 class ChatUI(base_chat, form_chat):
@@ -254,6 +286,11 @@ class ChatUI(base_chat, form_chat):
         self.chat_field = self.findChild(QTextEdit, 'chatField')
         self.chat_field.setHtml(messages)  # first updating chat field
         self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
+
+        self.info_label = self.findChild(QLabel, 'info')
+        pal = self.info_label.palette()
+        pal.setColor(QtGui.QPalette.WindowText, QtGui.QColor("red"))
+        self.info_label.setPalette(pal)
 
         update = True
 
@@ -279,30 +316,20 @@ class ChatUI(base_chat, form_chat):
     def on_threadSignalAThread(self, value):
         # self.msg.label.setText(str(value))
         # print(value)
-        self.chat_field.setHtml(str(value))  # updating chat field
-        self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
-        # Восстанавливаем визуализацию потокового окна, если его закрыли. Поток работает.
-        # .setVisible(true) или .show() устанавливает виджет в видимое состояние,
-        # если видны все его родительские виджеты до окна.
-        # if not self.msg.isVisible():
-        #     self.msg.show()
-
-    print("thread started")
-
-    def chat_updater(self):
-        global messages, update
-        while update:
-            socket.send_string("history")
-            print("waiting answer from server")
-            messages = str(socket.recv_string())  # download chat history
-            print(messages)
-            self.chat_field.setHtml("messages")  # updating chat field
+        if value is None:
+            self.info_label.setText("connection error. try again")
+        else:
+            self.info_label.setText("")
+            self.chat_field.setHtml(str(value))  # updating chat field
             self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
-            time.sleep(1)
+
+        print("thread started")
 
     def back_from_chat_click(self):
+        global update
         # go back to main window
-        self.thread.terminate()
+        update = False
+        # self.thread.terminate()
         self.thread = None
 
         self.main = MainUI()
@@ -311,18 +338,20 @@ class ChatUI(base_chat, form_chat):
 
     def send_button_click(self):
         # send message button clicked
-        global messages
+        global messages, current_user
         text = self.message_field.text().strip(" ")
         if len(text) > 0:  # if message is not empty
             messages += text + '<br/>'  # appending message to local history
-            socket.send_string("in_mes|" + text)
-            print(str(socket.recv_string()))
+            answer = send("in_mes|" + current_user[0] + "|" + text)
+            # socket.send_string("in_mes|" + text)
+            # print(str(socket.recv_string()))
+            print(answer)
         self.chat_field.setHtml(messages)  # updating chat field
         self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
         self.message_field.clear()
 
-
-app = QApplication(sys.argv)
-window = LoginUI()
-window.show()
-sys.exit(app.exec())
+#
+# app = QApplication(sys.argv)
+# window = LoginUI()
+# window.show()
+# sys.exit(app.exec())
