@@ -104,6 +104,7 @@ class LoginUI(base_login, form_login):
 
         self.password_input = self.findChild(QLineEdit, 'pw_login_input')
         self.password_input.setEchoMode(QLineEdit.Password)
+        self.password_input.returnPressed.connect(self.signin_button_click)
 
         self.info_label = self.findChild(QLabel, 'info')
         pal = self.info_label.palette()
