@@ -46,7 +46,10 @@ def __del__():
 
 
 def send(mes):
-    print("sending " + mes)
+    try:
+        print("sending " + mes)
+    except UnicodeEncodeError:
+        print("UnicodeEncodeError")
     socket.send_string(mes)
 
 
@@ -65,7 +68,7 @@ while True:
         try:
             print(data)
         except UnicodeEncodeError:
-            print("encode error")
+            print("UnicodeEncodeError")
         if data[0] == "in_mes":
             message = Message(username=data[1], text=data[2])
             message.save()

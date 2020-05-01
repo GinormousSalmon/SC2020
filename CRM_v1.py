@@ -40,11 +40,11 @@ def send(message):
     # thread = threading.Thread(target=test_client)
     # thread.daemon = True
     # thread.start()
-    socket.send_string(message, encoding='utf-16')
+    socket.send_string(message)
     print(message + " waiting answer from server")
     for i in range(6):
         try:
-            answer = socket.recv_string(zmq.NOBLOCK, encoding='utf-16')
+            answer = socket.recv_string(zmq.NOBLOCK)
         except zmq.ZMQError:
             pass
         else:
