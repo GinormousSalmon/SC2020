@@ -101,6 +101,7 @@ class LoginUI(base_login, form_login):
         self.email_input = self.findChild(QLineEdit, 'mail_login_input')
 
         self.password_input = self.findChild(QLineEdit, 'pw_login_input')
+        # self.password_input.setEchoMode(QLineEdit.Password)
 
         self.info_label = self.findChild(QLabel, 'info')
         pal = self.info_label.palette()
@@ -155,6 +156,7 @@ class RegUI(base_reg, form_reg):
         self.email_input = self.findChild(QLineEdit, 'email_reg_input')
 
         self.password_input = self.findChild(QLineEdit, 'pw_reg_input')
+        self.password_input.setEchoMode(QLineEdit.Password)
 
         self.position_input = self.findChild(QComboBox, 'position_box_input')
         self.position_input.addItem("Сотрудник")
@@ -350,8 +352,8 @@ class ChatUI(base_chat, form_chat):
         self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
         self.message_field.clear()
 
-#
-# app = QApplication(sys.argv)
-# window = LoginUI()
-# window.show()
-# sys.exit(app.exec())
+
+app = QApplication(sys.argv)
+window = LoginUI()
+window.show()
+sys.exit(app.exec())

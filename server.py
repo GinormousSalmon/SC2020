@@ -54,33 +54,36 @@ User.create_table()
 
 print("start")
 while True:
-    data = socket.recv_string()
-    data = data.split("|")
     try:
-        print(data)
-    except UnicodeEncodeError:
-        print("encode error")
-    if data[0] == "in_mes":
-        message = Message(username=data[1], text=data[2])
-        message.save()
-        socket.send_string("ok")
-    elif data[0] == "history":
-        history = ""
-        for mes in Message.select():
-            history += mes.text + '<br/>'
-        socket.send_string(history)
-        # result = send("usercheck|" + email + "|" + password)
-    elif data[0] == "usercheck":
-        if len(User.select().where(User.email == data[1], User.password == data[2])) > 0:
-            user = User.get(User.email == data[1])
-            socket.send_string("exist$#$" + user.name + "$#$" + user.position)
-        else:
-            socket.send_string("error")
-            #            result = send("reg|" + email + "|" + password + "|" + name + "|" + position)
-    elif data[0] == "reg":
-        if len(User.select().where(User.email == data[1], User.password == data[2])) > 0:
-            socket.send_string("exist")
-        else:
-            user = User(email=data[1], name=data[3], position=int(data[4]), password=data[2])
-            user.save()
-            socket.send_string("reg_ok")
+        data = socket.recv_string()
+        data = data.split("|")
+        try:
+            print(data)
+        except UnicodeEncodeError:
+            print("encode error")
+        if data[0] == "in_mes":
+            message = Message(username=data[1], text=data[2])
+            message.save()
+            socket.send_string("ok")
+        elif data[0] == "history":
+            history = ""
+            for mes in Message.select():
+                history += mes.text + '<br/>'
+            socket.send_string(history)
+            # result = send("usercheck|" + email + "|" + password)
+        elif data[0] == "usercheck":
+            if len(User.select().where(User.email == data[1], User.password == data[2])) > 0:
+                user = User.get(User.email == data[1])
+                socket.send_string("exist$#$" + user.name + "$#$" + user.position)
+            else:
+                socket.send_string("error")
+                #            result = send("reg|" + email + "|" + password + "|" + name + "|" + position)
+        elif data[0] == "reg":
+            if len(User.select().where(User.email == data[1], User.password == data[2])) > 0:
+                socket.send_string("exist")
+            else:
+                user = User(email=data[1], name=data[3], position=int(data[4]), password=data[2])
+                user.save()
+                socket.send_string("reg_ok")
+    except:
+        pass
