@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b62acbb1-ee2b-4626-ac2b-975f0e797e8e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9793b725-ebca-4768-9f97-09fc1d044c8b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9793b725-ebca-4768-9f97-09fc1d044c8b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/load2sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/load2sql.py" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/read_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_data.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/map/GPS track.dat" beforeDir="false" afterPath="$PROJECT_DIR$/map/GPSO.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/mydatabase.db" afterDir="false" />
+>>>>>>> Stashed changes
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="81133266-f6f6-4c14-98d8-c51bcc45dd32" />
+  <component name="ProjectId" id="1b7SyX7bxbfCywxrHn4dUnni6AR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/map" />
+    <property name="settings.editor.selected.configurable" value="PyScientificConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\DRIVE\Projects\Ending\NTI2020\SS\task2\Data\map" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\DRIVE\Projects\Ending\NTI2020\SS\task2\Data\map" />
+      <recent name="E:\DRIVE\Projects\Ending\NTI2020\SS\task2\Data\BOT" />
+      <recent name="E:\DRIVE\Projects\Ending\NTI2020\SS\task2\Data\crit" />
+      <recent name="E:\DRIVE\Projects\Ending\NTI2020\SS\task2\Data" />
+      <recent name="E:\DRIVE\Projects\Ending\NTI2020\SS\task2\Data\dataframes" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.load2sql">
+    <configuration name="my_map.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Data/map/my_map.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="critical_value" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Data" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/critical_value.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="first_task" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Data" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/first_task.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="load2sql" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Data" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/load2sql.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Data" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/map" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/map/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.load2sql" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="JavaScript Debug.my_map.html" />
+        <item itemvalue="Python.first_task" />
+        <item itemvalue="Python.critical_value" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b62acbb1-ee2b-4626-ac2b-975f0e797e8e" name="Default Changelist" comment="" />
+      <created>1587981893172</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587981893172</updated>
+      <workItem from="1587981894554" duration="84000" />
+      <workItem from="1587982047037" duration="60000" />
+      <workItem from="1587982274442" duration="17473000" />
+      <workItem from="1588033015448" duration="6626000" />
+      <workItem from="1588039686828" duration="27352000" />
+      <workItem from="1588070711105" duration="327000" />
+      <workItem from="1588071040108" duration="10297000" />
+      <workItem from="1588137032799" duration="15827000" />
+      <workItem from="1588155101459" duration="210000" />
+      <workItem from="1588156805121" duration="8505000" />
+      <workItem from="1588168299838" duration="345000" />
+<<<<<<< Updated upstream
+      <workItem from="1588210714405" duration="20233000" />
+=======
+      <workItem from="1588210714405" duration="20774000" />
+>>>>>>> Stashed changes
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588166368088">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588166368088" />
+    <state x="737" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588065926416">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="737" y="322" key="#com.intellij.fileTypes.FileTypeChooser/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588065926416" />
+    <state x="669" y="115" key="#main" timestamp="1588071991767">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="669" y="115" key="#main/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588071991767" />
+<<<<<<< Updated upstream
+    <state width="1877" height="309" key="GridCell.Tab.0.bottom" timestamp="1588235646142">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="309" key="GridCell.Tab.0.bottom/-1920.134.1920.1040/0.0.1920.1040@-1920.134.1920.1040" timestamp="1588168645253" />
+    <state width="1877" height="309" key="GridCell.Tab.0.bottom/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588235646142" />
+    <state width="1877" height="309" key="GridCell.Tab.0.center" timestamp="1588235646142">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="309" key="GridCell.Tab.0.center/-1920.134.1920.1040/0.0.1920.1040@-1920.134.1920.1040" timestamp="1588168645253" />
+    <state width="1877" height="309" key="GridCell.Tab.0.center/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588235646142" />
+    <state width="1877" height="309" key="GridCell.Tab.0.left" timestamp="1588235646142">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="309" key="GridCell.Tab.0.left/-1920.134.1920.1040/0.0.1920.1040@-1920.134.1920.1040" timestamp="1588168645253" />
+    <state width="1877" height="309" key="GridCell.Tab.0.left/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588235646142" />
+    <state width="1877" height="309" key="GridCell.Tab.0.right" timestamp="1588235646142">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="309" key="GridCell.Tab.0.right/-1920.134.1920.1040/0.0.1920.1040@-1920.134.1920.1040" timestamp="1588168645253" />
+    <state width="1877" height="309" key="GridCell.Tab.0.right/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588235646142" />
+=======
+    <state width="1877" height="309" key="GridCell.Tab.0.bottom" timestamp="1588236131465">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="309" key="GridCell.Tab.0.bottom/-1920.134.1920.1040/0.0.1920.1040@-1920.134.1920.1040" timestamp="1588168645253" />
+    <state width="1877" height="309" key="GridCell.Tab.0.bottom/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588236131465" />
+    <state width="1877" height="309" key="GridCell.Tab.0.center" timestamp="1588236131465">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="309" key="GridCell.Tab.0.center/-1920.134.1920.1040/0.0.1920.1040@-1920.134.1920.1040" timestamp="1588168645253" />
+    <state width="1877" height="309" key="GridCell.Tab.0.center/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588236131465" />
+    <state width="1877" height="309" key="GridCell.Tab.0.left" timestamp="1588236131465">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="309" key="GridCell.Tab.0.left/-1920.134.1920.1040/0.0.1920.1040@-1920.134.1920.1040" timestamp="1588168645253" />
+    <state width="1877" height="309" key="GridCell.Tab.0.left/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588236131465" />
+    <state width="1877" height="309" key="GridCell.Tab.0.right" timestamp="1588236131465">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="309" key="GridCell.Tab.0.right/-1920.134.1920.1040/0.0.1920.1040@-1920.134.1920.1040" timestamp="1588168645253" />
+    <state width="1877" height="309" key="GridCell.Tab.0.right/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588236131465" />
+>>>>>>> Stashed changes
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1588234984973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588234984973" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1588234984973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588234984973" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1588234984973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588234984973" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1588234984973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588234984973" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1588166291261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588166291261" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1588154981006">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588154981006" />
+    <state x="850" y="407" width="316" height="244" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1588212030793">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="850" y="407" width="316" height="244" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588212030793" />
+    <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1588166777227">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588166777227" />
+    <state x="561" y="130" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1588066794927">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="561" y="130" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588066794926" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588213505090">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.134.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588213505090" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Data$Plotter.coverage" NAME="Plotter Coverage Results" MODIFIED="1587989444561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data$model.coverage" NAME="model Coverage Results" MODIFIED="1587983817237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data$read_data.coverage" NAME="read_data Coverage Results" MODIFIED="1588140862809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data$first_task.coverage" NAME="first_task Coverage Results" MODIFIED="1588219814077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data$main.coverage" NAME="main Coverage Results" MODIFIED="1588234684079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/map" />
+<<<<<<< Updated upstream
+    <SUITE FILE_PATH="coverage/Data$load2sql.coverage" NAME="load2sql Coverage Results" MODIFIED="1588235714944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+=======
+    <SUITE FILE_PATH="coverage/Data$load2sql.coverage" NAME="load2sql Coverage Results" MODIFIED="1588236390389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+>>>>>>> Stashed changes
+    <SUITE FILE_PATH="coverage/Data$critical_value.coverage" NAME="critical_value Coverage Results" MODIFIED="1588212542914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data$matmodel.coverage" NAME="matmodel Coverage Results" MODIFIED="1588138231408" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data$helper.coverage" NAME="helper Coverage Results" MODIFIED="1587992025729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

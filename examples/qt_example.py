@@ -1,15 +1,11 @@
-import subprocess
 import traceback
-import main
 
-import qimage2ndarray as qimage2ndarray
 from PyQt5 import uic, QtCore, Qt, QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 import sys
 import zmq
 import os
-import lyosha.first_task as graphics
 from datetime import datetime
 import time
 
@@ -37,7 +33,6 @@ form_main, base_main = uic.loadUiType(resource_path('mainForm.ui'))
 form_chat, base_chat = uic.loadUiType(resource_path('chat.ui'))
 form_login, base_login = uic.loadUiType(resource_path('login.ui'))
 form_reg, base_reg = uic.loadUiType(resource_path('registration.ui'))
-form_tele, base_tele = uic.loadUiType(resource_path('telemetry.ui'))
 
 
 def send(message):
@@ -92,25 +87,6 @@ class AThread(QThread):
             QThread.msleep(1000)
 
 
-class PandasModel(QtCore.QAbstractTableModel):
-    def __init__(self, data, parent=None):
-        QtCore.QAbstractTableModel.__init__(self, parent)
-        self._data = data
-
-    def rowCount(self, parent=None):
-        return len(self._data.values)
-
-    def columnCount(self, parent=None):
-        return self._data.columns.size
-
-    def data(self, index, role=Qt.DisplayRole):
-        if index.isValid():
-            if role == Qt.DisplayRole:
-                return QtCore.QVariant(str(
-                    self._data.values[index.row()][index.column()]))
-        return QtCore.QVariant()
-
-
 class LoginUI(base_login, form_login):
     def __init__(self):
         super(base_login, self).__init__()
@@ -138,8 +114,6 @@ class LoginUI(base_login, form_login):
         global current_user
         email = self.email_input.text().strip(" ")
         password = self.password_input.text().strip(" ")
-        # email = "terleckii"
-        # password = "1234"  # #######################################################################
         if len(email) == 0:
             self.info_label.setText("email is empty")
         elif len(password) == 0:
@@ -182,8 +156,6 @@ class RegUI(base_reg, form_reg):
         self.name_input = self.findChild(QLineEdit, 'name_reg_input')
 
         self.email_input = self.findChild(QLineEdit, 'email_reg_input')
-
-        self.age_input = self.findChild(QLineEdit, 'age_reg_input')
 
         self.password_input = self.findChild(QLineEdit, 'pw_reg_input')
         self.password_input.setEchoMode(QLineEdit.Password)
@@ -242,8 +214,8 @@ class MainUI(base_main, form_main):
         self.crm_button = self.findChild(QPushButton, 'crmButton')
         self.crm_button.clicked.connect(self.crm_button_click)
 
-        self.map_button = self.findChild(QPushButton, 'mapsButton')
-        self.map_button.clicked.connect(self.map_button_click)
+        self.hr_button = self.findChild(QPushButton, 'hrHelperButton')
+        self.hr_button.clicked.connect(self.hr_button_click)
 
         self.equipment_button = self.findChild(QPushButton, 'equipmentStateButton')
         self.equipment_button.clicked.connect(self.equipment_button_click)
@@ -270,18 +242,13 @@ class MainUI(base_main, form_main):
         # This is executed when the button is pressed
         print('crm_button_click')
 
-    def map_button_click(self):
+    def hr_button_click(self):
         # This is executed when the button is pressed
-        print('map_button_click')
-        main.work()
-        # subprocess.call("python " + resource_path("main.py"), shell=True)
+        print('hr_button_click')
 
     def equipment_button_click(self):
         # This is executed when the button is pressed
         print('equipment_button_click')
-        self.main = TelemetryUI()
-        self.main.show()
-        self.close()
 
     def staff_button_click(self):
         # This is executed when the button is pressed
@@ -293,13 +260,11 @@ class MainUI(base_main, form_main):
 
     def chat_button_click(self):
         # close current window and open chat window
-        print('chat_button_click')
         self.main = ChatUI()
         self.main.show()
         self.close()
 
     def logout_button_click(self):
-        print('logout_button_click')
         self.main = LoginUI()
         self.main.show()
         self.close()
@@ -389,189 +354,6 @@ class ChatUI(base_chat, form_chat):
         self.chat_field.setHtml(messages)  # updating chat field
         self.chat_field.verticalScrollBar().setValue(self.chat_field.verticalScrollBar().maximum())  # scroll to end
         self.message_field.clear()
-
-
-class TelemetryUI(base_tele, form_tele):
-    def __init__(self):
-        super(base_tele, self).__init__()
-        self.setupUi(self)
-        self.main = None
-
-        self.back_button = self.findChild(QPushButton, 'back_tele_button')
-        self.back_button.clicked.connect(self.back_click)
-
-        self.all_data_button = self.findChild(QPushButton, 'all_devices_data')
-        self.all_data_button.clicked.connect(self.all_data_click)
-
-        self.warning_button = self.findChild(QPushButton, 'warning_tele_button')
-        self.warning_button.clicked.connect(self.warning_click)
-
-        self.critical_button = self.findChild(QPushButton, 'critical_tele_button')
-        self.critical_button.clicked.connect(self.critical_click)
-
-        self.graphic_radiobutton = self.findChild(QRadioButton, 'graphic_rbutton')
-        self.table_radiobutton = self.findChild(QRadioButton, 'table_rbutton')
-        self.diagram_radiobutton = self.findChild(QRadioButton, 'diagram_rbutton')
-
-        self.date_begin = self.findChild(QDateTimeEdit, 'dateBegin')
-        self.date_end = self.findChild(QDateTimeEdit, 'dateEnd')
-
-        self.equipment_input = self.findChild(QComboBox, 'equipment_box')
-        self.equipment_input.addItem("Все")
-        self.box_dict = {"Номер": 'num', "Дата": 'date', "Температура": "oC", "Уровень вибраций": 'vsu',
-                         "Загруженность": 'congestion', "Мощность": 'W', "Время": 'Hours'}
-        for i in range(1, 13):
-            self.equipment_input.addItem(str(i))
-
-        self.telemetry_input = self.findChild(QComboBox, 'telemetry_type')
-        self.telemetry_input.addItem("Номер")
-        self.telemetry_input.addItem("Температура")
-        self.telemetry_input.addItem("Уровень вибраций")
-        self.telemetry_input.addItem("Загруженность")
-        self.telemetry_input.addItem("Мощность")
-        self.telemetry_input.addItem("Время")
-
-        self.table = self.findChild(QTableView, 'tableView')
-        self.image_view = self.findChild(QGraphicsView, 'graphicsView')
-
-    def back_click(self):
-        self.main = MainUI()
-        self.main.show()
-        self.close()
-
-    # mask = masks[0][0] | masks[2][0] | masks[4][0] | masks[6][0] | masks[8][0]
-    def all_data_click(self):
-        if self.table_radiobutton.isChecked():
-            style = 0
-        elif self.graphic_radiobutton.isChecked():
-            style = 1
-        elif self.diagram_radiobutton.isChecked():
-            style = 2
-        else:
-            return 0
-        telemetry_type = self.box_dict.get(self.telemetry_input.currentText())
-        number = self.equipment_input.currentText()
-        if number == "Все":
-            number = 0
-
-        begin_date = self.date_begin.dateTime()
-        year_1 = begin_date.date().year()
-        month_1 = begin_date.date().month()
-        day_1 = begin_date.date().day()
-        hour_1 = begin_date.time().hour()
-
-        end_date = self.date_end.dateTime()
-        year_2 = end_date.date().year()
-        month_2 = end_date.date().month()
-        day_2 = end_date.date().day()
-        hour_2 = end_date.time().hour()
-
-        date1 = datetime(year_1, month_1, day_1, hour_1)
-        date2 = datetime(year_2, month_2, day_2, hour_2)
-        print("mask", graphics.masks[3][0])
-        result = graphics.create_graphic(int(number), date1, date2, telemetry_type, out=style)
-        if style == 0:
-            model = PandasModel(result)
-            self.table.setModel(model)
-            # self.image_view.hide()
-            self.table.show()
-        else:
-            # self.image_view.setBackgroundBrush(result)
-            scene = QGraphicsScene(self)
-            scene.addPixmap(QtGui.QPixmap.fromImage(qimage2ndarray.array2qimage(result)))
-            self.image_view.setScene(scene)
-            self.table.hide()
-            self.image_view.show()
-
-    def warning_click(self):
-        if self.table_radiobutton.isChecked():
-            style = 0
-        elif self.graphic_radiobutton.isChecked():
-            style = 1
-        elif self.diagram_radiobutton.isChecked():
-            style = 2
-        else:
-            return 0
-        telemetry_type = self.box_dict.get(self.telemetry_input.currentText())
-        number = self.equipment_input.currentText()
-        if number == "Все":
-            number = 0
-
-        begin_date = self.date_begin.dateTime()
-        year_1 = begin_date.date().year()
-        month_1 = begin_date.date().month()
-        day_1 = begin_date.date().day()
-        hour_1 = begin_date.time().hour()
-
-        end_date = self.date_end.dateTime()
-        year_2 = end_date.date().year()
-        month_2 = end_date.date().month()
-        day_2 = end_date.date().day()
-        hour_2 = end_date.time().hour()
-
-        date1 = datetime(year_1, month_1, day_1, hour_1)
-        date2 = datetime(year_2, month_2, day_2, hour_2)
-        print("mask", graphics.masks[3][0])
-        mask = graphics.masks[0][0] + ' OR ' + graphics.masks[2][0] + ' OR ' + graphics.masks[4][0] + ' OR ' + \
-               graphics.masks[6][0] + ' OR ' + graphics.masks[8][0]
-        result = graphics.create_graphic(int(number), date1, date2, telemetry_type, mask=mask, out=style)
-        if style == 0:
-            model = PandasModel(result)
-            self.table.setModel(model)
-            # self.image_view.hide()
-            self.table.show()
-        else:
-            # self.image_view.setBackgroundBrush(result)
-            scene = QGraphicsScene(self)
-            scene.addPixmap(QtGui.QPixmap.fromImage(qimage2ndarray.array2qimage(result)))
-            self.image_view.setScene(scene)
-            self.table.hide()
-            self.image_view.show()
-
-    def critical_click(self):
-        if self.table_radiobutton.isChecked():
-            style = 0
-        elif self.graphic_radiobutton.isChecked():
-            style = 1
-        elif self.diagram_radiobutton.isChecked():
-            style = 2
-        else:
-            return 0
-        telemetry_type = self.box_dict.get(self.telemetry_input.currentText())
-        number = self.equipment_input.currentText()
-        if number == "Все":
-            number = 0
-
-        begin_date = self.date_begin.dateTime()
-        year_1 = begin_date.date().year()
-        month_1 = begin_date.date().month()
-        day_1 = begin_date.date().day()
-        hour_1 = begin_date.time().hour()
-
-        end_date = self.date_end.dateTime()
-        year_2 = end_date.date().year()
-        month_2 = end_date.date().month()
-        day_2 = end_date.date().day()
-        hour_2 = end_date.time().hour()
-
-        date1 = datetime(year_1, month_1, day_1, hour_1)
-        date2 = datetime(year_2, month_2, day_2, hour_2)
-        print("mask", graphics.masks[3][0])
-        mask = graphics.masks[1][0] + ' OR ' + graphics.masks[3][0] + ' OR ' + graphics.masks[5][0] + ' OR ' + \
-               graphics.masks[7][0] + ' OR ' + graphics.masks[9][0]
-        result = graphics.create_graphic(int(number), date1, date2, telemetry_type, mask=mask, out=style)
-        if style == 0:
-            model = PandasModel(result)
-            self.table.setModel(model)
-            # self.image_view.hide()
-            self.table.show()
-        else:
-            # self.image_view.setBackgroundBrush(result)
-            scene = QGraphicsScene(self)
-            scene.addPixmap(QtGui.QPixmap.fromImage(qimage2ndarray.array2qimage(result)))
-            self.image_view.setScene(scene)
-            self.table.hide()
-            self.image_view.show()
 
 
 app = QApplication(sys.argv)
