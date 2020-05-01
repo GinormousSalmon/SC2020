@@ -40,19 +40,18 @@ def send(message):
     # thread = threading.Thread(target=test_client)
     # thread.daemon = True
     # thread.start()
-    for i in range(3):
-        socket.send_string(message, encoding='utf-8')
-        print("waiting answer from server")
-        for j in range(6):
-            try:
-                answer = socket.recv_string(zmq.NOBLOCK, encoding='utf-8')
-            except zmq.ZMQError:
-                pass
-            else:
-                print("got answer")
-                return answer
-            finally:
-                time.sleep(0.02)
+    socket.send_string(message, encoding='utf-16')
+    print(message + " waiting answer from server")
+    for i in range(6):
+        try:
+            answer = socket.recv_string(zmq.NOBLOCK, encoding='utf-16')
+        except zmq.ZMQError:
+            pass
+        else:
+            print("got answer")
+            return answer
+        finally:
+            time.sleep(0.06)
     print("no answer")
     return None
 
