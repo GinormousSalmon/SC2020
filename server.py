@@ -76,7 +76,7 @@ while True:
         elif data[0] == "history":
             history = ""
             for mes in Message.select():
-                history += mes.text + '<br/>'
+                history += mes.username + ": " + mes.text + '<br/>'
             send(history)
             # result = send("usercheck|" + email + "|" + password)
         elif data[0] == "usercheck":

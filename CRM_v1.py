@@ -1,6 +1,6 @@
+import shutil
 import subprocess
 import traceback
-import main
 
 import qimage2ndarray as qimage2ndarray
 from PyQt5 import uic, QtCore, Qt, QtGui
@@ -19,6 +19,32 @@ def resource_path(relative_path):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
 
+
+# try:
+#     print(resource_path('_cnames.json'))
+#     os.mkdir(resource_path('branca'))
+#     shutil.copy(resource_path('_cnames.json'),
+#                 resource_path('_cnames.json').strip('_cnames.json') + 'branca\\_cnames.json')
+#
+#     shutil.copy(resource_path('_schemes.json'),
+#                 resource_path('_schemes.json').strip('_schemes.json') + 'branca\\_schemes.json')
+#
+#     shutil.copy(resource_path('scheme_base_codes.json'),
+#                 resource_path('scheme_base_codes.json').strip(
+#                     'scheme_base_codes.json') + 'branca\\scheme_base_codes.json')
+#
+#     shutil.copy(resource_path('scheme_info.json'),
+#                 resource_path('scheme_info.json').strip('scheme_info.json') + 'branca\\scheme_info.json')
+#
+#     shutil.copy(resource_path('__init__.py'),
+#                 resource_path('__init__.py').strip('__init__.py') + 'branca\\__init__.py')
+# except Exception as ex:
+#     print(ex)
+
+try:
+    import main
+except Exception as ex:
+    print(ex)
 
 # connecting to server
 context = zmq.Context()
@@ -273,7 +299,10 @@ class MainUI(base_main, form_main):
     def map_button_click(self):
         # This is executed when the button is pressed
         print('map_button_click')
-        main.work()
+        try:
+            main.work()
+        except Exception as ex:
+            print(ex)
         # subprocess.call("python " + resource_path("main.py"), shell=True)
 
     def equipment_button_click(self):
