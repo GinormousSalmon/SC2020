@@ -1,0 +1,1 @@
+start /min cmd /c "C:\Program Files\PuTTY\putty.exe" -pw UmAH24E0xQOP root@46.173.215.129

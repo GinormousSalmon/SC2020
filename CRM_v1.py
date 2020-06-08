@@ -49,7 +49,7 @@ except Exception as ex:
 # connecting to server
 context = zmq.Context()
 socket = context.socket(zmq.REQ)
-result = socket.connect("tcp://45.143.136.117:9000")
+result = socket.connect("tcp://46.173.215.129:9000")
 
 messages = ""  # local chat history
 update = False
